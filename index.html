@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>FSFC</title>
+  <title>FCFS Algorithm</title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  
 </head>
 
 <body>
@@ -14,15 +15,16 @@
       <h1>Algorithm: First Come First Serve, FCFS</h1>
     </div>
     <div class="container">
-      <div class="container-form">
+        <div class="container-form">
         <div class="form-body">
           <h4>Digite los datos de entrada</h4>
+          <h5>(Por favor, séparelos por una coma)</h5>
 
           <div class="times">
             <label>Arrival Times</label><br>
             <input placeholder="Example: 0,2,4,6,8" type="text" class="arrival-time">
           </div>
-          <br><br>
+          <br>
           <div class="times">
             <label>Burst Times</label><br>
             <input placeholder="Example: 2,4,6,8,10" type="text" class="burst-time">
@@ -31,23 +33,26 @@
             <button type="button" id="btnLeer">Enviar</button>
           </div>
         </div>
+    </div>
+    
 
-
-      </div>
       <div class="table-answer">
         <div class="header">
           <h2>Datos de salida</h2>
           <h2 id="algorithm">FCFS</h2>
         </div>
         <div id="tabla">
-
         </div>
       </div>
     </div>
   </div>
 
-
+<footer>
+        <a href="https://github.com/Perutty/ExamenFinal-SO" target="_blank" id="github"><i class="fa-brands fa-github" id="github">&nbsp;&nbsp;</i>Github</a>
+    <div></div>
+</footer>
   <script src="js/script.js"></script>
+  <script src="https://kit.fontawesome.com/379287da3b.js" crossorigin="anonymous"></script>
 
 </body>
 

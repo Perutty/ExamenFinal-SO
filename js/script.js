@@ -50,7 +50,7 @@ function createTable(arrivalData) {
   var turnaroundTimeTotal = 0;
   var waitingTimeTotal = 0;
 
-  let table = '<table border="1" align="center" class="visible"><thead><tr><th>Task </th><th>Arrival Time</th><th>Burst Time</th><th>Finish Time</th><th>Turnaround Time</th><th>Waiting Time</th></tr></thead><tbody>';
+  let table = '<table align="center"><thead><tr><th>Task </th><th>Arrival Time</th><th>Burst Time</th><th>Finish Time</th><th>Turnaround Time</th><th>Waiting Time</th></tr></thead><tbody>';
 
   for (let i = 0; i < arrivalData.length; i++) {
 
