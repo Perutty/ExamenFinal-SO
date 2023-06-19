@@ -1,12 +1,7 @@
-
 const boton = document.getElementById("btnLeer");
-var casos = document.querySelector('#tabla2 tbody');
 
 let arrivalData = [];
 let regex = [];
-
-
-
 
 boton.addEventListener("click", function() {
   
@@ -27,19 +22,69 @@ boton.addEventListener("click", function() {
   var arrival = document.querySelector('.arrival-time').value;
   var burst = document.querySelector('.burst-time').value;
 
+  var soloComasArrival = /^\s*,*\s*$/.test(arrival);
+  var soloComasBurst = /^\s*,*\s*$/.test(burst);
+  var multiplesComasArrival = /,{2,}/.test(arrival);
+  var multiplesComasBurst = /,{2,}/.test(burst);
+
+  var empiezaConComaArrival = /^,/.test(arrival);
+  var empiezaConComaBurst = /^,/.test(burst);
+
   var arrivalValue = arrival.split(",");
   var burstValue = burst.split(",");
   
   for(let i = 0; i < regex.length; i++){
     
     if(arrival.includes(regex[i]) || burst.includes(regex[i])){
-      alert("Por favor, digite solo números enteros");
+      Swal.fire({
+        title: '¡ WARNING !',
+        text: 'Please, type only whole numbers',
+        icon: 'error',
+        //timer: 4000, 
+        //timerProgressBar: true,
+        allowOutsideClick: true, 
+        allowEscapeKey: true,
+        allowEnterKey: true
+    });
       regexMatch = true;
       break;
     }else if(!arrival.includes(",") || !burst.includes(",")){
-      alert("Por favor, separe los números por una coma");
+      Swal.fire({
+        title: '¡ WARNING !',
+        text: 'Please, separate the numbers by a comma',
+        icon: 'error',
+        //timer: 4000, 
+        //timerProgressBar: true,
+        allowOutsideClick: true, 
+        allowEscapeKey: true,
+        allowEnterKey: true
+    });
       regexMatch = true;
       break;
+    }else if(multiplesComasArrival || multiplesComasBurst || soloComasArrival || soloComasBurst){
+      Swal.fire({
+        title: '¡ WARNING !',
+        text: 'Please, do not type commas in sequence',
+        icon: 'error',
+        //timer: 4000, 
+        //timerProgressBar: true,
+        allowOutsideClick: true, 
+        allowEscapeKey: true,
+        allowEnterKey: true
+    });
+      regexMatch = true;
+    }else if(empiezaConComaArrival || empiezaConComaBurst){
+      Swal.fire({
+        title: '¡ WARNING !',
+        text: 'Please, the first value must be an integer number.',
+        icon: 'error',
+        //timer: 4000, 
+        //timerProgressBar: true,
+        allowOutsideClick: true, 
+        allowEscapeKey: true,
+        allowEnterKey: true
+    });
+      regexMatch = true;
     }
   }
   
@@ -62,10 +107,18 @@ boton.addEventListener("click", function() {
           contador++;
         }
         
-      } else
-      alert('Los tiempos de llegada y de ejecución deben ser la misma cantidad');
-      
-      
+      } else{
+      Swal.fire({
+        title: '¡ WARNING !',
+        text: 'Arrival Times and Burst Times must be the same amount',
+        icon: 'error',
+        //timer: 4000, 
+        //timerProgressBar: true,
+        allowOutsideClick: true, 
+        allowEscapeKey: true,
+        allowEnterKey: true
+    });
+  }
       createTable(arrivalData);
     }
       
