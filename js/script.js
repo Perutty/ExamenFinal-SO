@@ -87,9 +87,7 @@ boton.addEventListener("click", function() {
       regexMatch = true;
     }
   }
-  
-  if(!regexMatch){
-    
+
     if (burstValue.length == arrivalValue.length) {
       
       arrivalData.splice(0, arrivalData.length);
@@ -118,7 +116,10 @@ boton.addEventListener("click", function() {
         allowEscapeKey: true,
         allowEnterKey: true
     });
+    regexMatch = true;
   }
+
+  if(!regexMatch){
       createTable(arrivalData);
     }
       
