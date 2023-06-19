@@ -102,7 +102,7 @@ html,body {
     border-radius: 4px;
   }
   
-  #tabla table {
+  #tabla table{
     border-collapse: collapse;
     border: 0.3px solid lightblue;
   }
