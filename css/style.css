@@ -2,7 +2,6 @@ html,body {
     height: 100%;
     width: 100%;
     font-family: "Segoe UI";
-    overflow-x: hidden;
     margin:0px;
 	  padding:0px;
 }
@@ -173,6 +172,7 @@ footer .foot{
   justify-content: center;
   align-items: center;
   gap: 300px;
+  margin-bottom: 30px;
 }
   
   footer a{
@@ -184,13 +184,14 @@ footer .foot{
     position: relative;
     color: black;
     font-size: 20px;
+    transition: color 0.3s ease 0s;
   }
 
   footer .text span{
     font-style: italic;
     color: #434242;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   footer i:hover{
@@ -209,13 +210,18 @@ footer .foot{
       justify-content: center;
     }
 
+    .main .title-page h1{
+      width: 80%;
+      margin-bottom: -15px;
+    }
+
    .main .title-page .logo-sistemas{
-    width:30%;
+    width:50%;
     height: 100%;
   }
 
   .main .title-page .logo-ufps{
-    width: 10%;
+    width: 20%;
     height: 140%;
   }
 
@@ -227,7 +233,7 @@ footer .foot{
     .container .table-answer {
       position: relative;
       display: inline;
-      width: 85%;
+      width: 90%;
       height: 100%;
       border: 0.1px solid lightblue;
       border-radius: 7px;
@@ -239,7 +245,7 @@ footer .foot{
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 150px;
+      gap: 50px;
     }
 
     .container .table-answer .header #algorithm {
@@ -248,11 +254,29 @@ footer .foot{
       border-radius: 4px;
     }
 
-    footer{
+    #tabla table{
+      opacity: 1;
+      width: 50%;
+      font-size: 11px;
       position: relative;
+      border-collapse: collapse;
+      border: 0.3px solid lightblue;
+      animation: fade-in 0.4s ease-in-out;
+    }
+
+    footer{
+      position: absolute;
       width: 100%;
-      height: 1%;
-      display: grid;
+      display: inline;
+    }
+
+    footer .foot{
+      display: flex;
+      text-align: center;
+      flex-wrap: wrap;
+      width: 100%;
+      gap:30px;
+      margin-bottom: 40px;
     }
     
   }
