@@ -85,8 +85,21 @@ boton.addEventListener("click", function() {
         allowEnterKey: true
     });
       regexMatch = true;
+    }else if(burstValue.includes("0")){
+      Swal.fire({
+        title: '¡ WARNING !',
+        text: '0 burst time is invalid',
+        icon: 'error',
+        //timer: 4000, 
+        //timerProgressBar: true,
+        allowOutsideClick: true, 
+        allowEscapeKey: true,
+        allowEnterKey: true
+    });
+      regexMatch = true;
     }
-  }
+    }
+
 
     if (burstValue.length == arrivalValue.length) {
       
@@ -121,6 +134,7 @@ boton.addEventListener("click", function() {
 
   if(!regexMatch){
       createTable(arrivalData);
+      createGranttChart(arrivalData);
     }
       
 });
@@ -142,23 +156,27 @@ function createTable(arrivalData) {
   let table = '<table align="center" class="visible"><thead><tr><th>Task </th><th>Arrival Time</th><th>Burst Time</th><th>Finish Time</th><th>Turnaround Time</th><th>Waiting Time</th></tr></thead><tbody>';
 
   for (let i = 0; i < arrivalData.length; i++) {
-
-    arrivalTime = parseInt(arrivalData[i][1]);
-
-    burstTime = parseInt(arrivalData[i][2]);
-
-    finishTime += parseInt(arrivalData[i][2]);
-
-    turnaroundTime = finishTime - arrivalTime;
-
-    turnaroundTimeTotal += turnaroundTime;
-
-    waitingTime = turnaroundTime - burstTime;
-
-    waitingTimeTotal += waitingTime;
-
-    table += '<tr><td>' + arrivalData[i][0] + '</td><td>' + arrivalTime + '</td><td>' + burstTime + '</td><td>' + finishTime + '</td><td>' + turnaroundTime + '</td><td>' + waitingTime + '</td></tr>';
-  }
+    if(i==0){
+      finishTime += parseInt(arrivalData[i][1]);
+    }
+      arrivalTime = parseInt(arrivalData[i][1]);
+  
+      burstTime = parseInt(arrivalData[i][2]);
+  
+      finishTime += parseInt(arrivalData[i][2]);
+  
+      turnaroundTime = finishTime - arrivalTime;
+  
+      turnaroundTimeTotal += turnaroundTime;
+  
+      waitingTime = turnaroundTime - burstTime;
+  
+      waitingTimeTotal += waitingTime;
+  
+      table += '<tr><td>' + arrivalData[i][0] + '</td><td>' + arrivalTime + '</td><td>' + burstTime + '</td><td>' + finishTime + '</td><td>' + turnaroundTime + '</td><td>' + waitingTime + '</td></tr>';
+      
+    }
+  
 
   var resultado1 = (turnaroundTimeTotal / arrivalData.length).toString();
   var resultado2 = (waitingTimeTotal / arrivalData.length).toString();
@@ -173,5 +191,28 @@ function createTable(arrivalData) {
 
   table += '<td colspan="4" style="text-align:right;">Average</td><td>' + turnaroundTimeTotal + ' / ' + arrivalData.length + ' = ' + resultado1 + '</td><td>' + waitingTimeTotal + ' / ' + arrivalData.length + ' = ' + resultado2 + '</td></tr></tbody></table><br><br>';
   document.getElementById('tabla').innerHTML = table;
+}
 
+function createGranttChart(arrivalData){
+
+  let ganttChart = '';
+  let burst = '';
+  let title = '<h3>Gantt Chart</h3>';
+  var finish = 0;
+
+  for (let i = 0; i < arrivalData.length; i++) {
+
+    
+    if(i==0){
+      finish += parseInt(arrivalData[i][1]);
+      burst += '<div class="br">' + finish + '</div>';
+    }
+    finish += parseInt(arrivalData[i][2]);
+    ganttChart += '<div class="id">' + arrivalData[i][0] + '</div>';
+    burst += '<div class="br">' + finish + '</div>';
+
+  }
+  document.getElementById('h3').innerHTML = title;
+  document.getElementById('gantt').innerHTML = ganttChart;
+  document.getElementById('burst').innerHTML = burst;
 }
