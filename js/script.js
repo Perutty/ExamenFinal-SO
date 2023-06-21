@@ -189,7 +189,7 @@ function createTable(arrivalData) {
     resultado2 = resultado2.replace(".0", "");
   }
 
-  table += '<td colspan="4" style="text-align:right;">Average</td><td>' + turnaroundTimeTotal + ' / ' + arrivalData.length + ' = ' + resultado1 + '</td><td>' + waitingTimeTotal + ' / ' + arrivalData.length + ' = ' + resultado2 + '</td></tr></tbody></table><br><br>';
+  table += '<td colspan="4" style="text-align:right;">Average</td><td>' + turnaroundTimeTotal + ' / ' + arrivalData.length + ' = ' + parseInt(resultado1).toFixed(1) + '</td><td>' + waitingTimeTotal + ' / ' + arrivalData.length + ' = ' + parseInt(resultado2).toFixed(1) + '</td></tr></tbody></table><br><br>';
   document.getElementById('tabla').innerHTML = table;
 }
 
