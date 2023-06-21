@@ -243,7 +243,7 @@ footer .foot{
     transition: color 0.3s ease 0s;
   }
 
-  @media screen and (max-width: 870px) {
+  @media screen and (max-width: 1060px) {
 
     .main .title-page {
       display: flex;
@@ -276,13 +276,18 @@ footer .foot{
 
     .container .table-answer {
       position: relative;
-      display: inline;
-      width: 90%;
+      display: inline;   
+      width: 85%;
       height: 100%;
       border: 0.1px solid lightblue;
       border-radius: 7px;
       box-shadow: 0px 0px 8px rgba(173, 216, 230, 0.9);
       margin-top: -35px;
+      padding: 10px;
+    }
+
+    .container .table-answer .tabla{
+      overflow-x: scroll; 
     }
 
     .container .table-answer .header {
@@ -300,12 +305,12 @@ footer .foot{
 
     #tabla table{
       opacity: 1;
-      width: 50%;
+      width: 90%;
       font-size: 11px;
       position: relative;
       border-collapse: collapse;
       border: 0.3px solid lightblue;
-      animation: fade-in 0.4s ease-in-out;
+      animation: fade-in 0.4s ease-in-out;      
     }
 
     footer{
