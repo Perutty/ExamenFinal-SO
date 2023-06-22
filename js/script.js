@@ -165,7 +165,7 @@ function createTable(arrivalData) {
       finishTime += parseInt(arrivalData[i][1]);
     }
 
-    if((i==1)&&(i!==arrivalData[i][1])){
+    if(finishTime<arrivalData[i][1]){
       finishTime++;
       ganttChart += '<div class="ocio"> - </div>';
       burst += '<div class="br">' + arrivalData[i][2] + '</div>';
