@@ -114,6 +114,19 @@ html,body {
     border: 1px solid rgb(148, 184, 196);
   }
 
+  .container .table-answer .chart .gantt .ocio{
+    width: 40px;
+    height: 35px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #424242;
+    color: white;
+    border: 1px solid rgb(148, 184, 196);
+  }
+
   .container .table-answer .chart .burst{
     display: flex;
   }

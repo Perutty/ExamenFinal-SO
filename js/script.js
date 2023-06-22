@@ -134,12 +134,16 @@ boton.addEventListener("click", function() {
 
   if(!regexMatch){
       createTable(arrivalData);
-      createGranttChart(arrivalData);
+      //createGranttChart(arrivalData);
     }
       
 });
 
 function createTable(arrivalData) {
+
+  let ganttChart = '';
+  let burst = '';
+  let title = '<h3>Gantt Chart</h3>';
 
   arrivalData.sort(function(a, b) {
     return a[1] - b[1];
@@ -157,13 +161,20 @@ function createTable(arrivalData) {
 
   for (let i = 0; i < arrivalData.length; i++) {
     if(i==0){
+      burst += '<div class="br">' + arrivalData[i][1] + '</div>';
       finishTime += parseInt(arrivalData[i][1]);
     }
-      arrivalTime = parseInt(arrivalData[i][1]);
-  
-      burstTime = parseInt(arrivalData[i][2]);
-  
-      finishTime += parseInt(arrivalData[i][2]);
+
+    if((i==1)&&(i!==arrivalData[i][1])){
+      finishTime++;
+      ganttChart += '<div class="ocio"> - </div>';
+      burst += '<div class="br">' + arrivalData[i][2] + '</div>';
+    }
+    arrivalTime = parseInt(arrivalData[i][1]);
+
+    burstTime = parseInt(arrivalData[i][2]);
+
+    finishTime += parseInt(arrivalData[i][2]);
   
       turnaroundTime = finishTime - arrivalTime;
   
@@ -172,9 +183,11 @@ function createTable(arrivalData) {
       waitingTime = turnaroundTime - burstTime;
   
       waitingTimeTotal += waitingTime;
+
+      ganttChart += '<div class="id">' + arrivalData[i][0] + '</div>';
+      burst += '<div class="br">' + finishTime + '</div>';
   
       table += '<tr><td>' + arrivalData[i][0] + '</td><td>' + arrivalTime + '</td><td>' + burstTime + '</td><td>' + finishTime + '</td><td>' + turnaroundTime + '</td><td>' + waitingTime + '</td></tr>';
-      
     }
   
 
@@ -191,9 +204,12 @@ function createTable(arrivalData) {
 
   table += '<td colspan="4" style="text-align:right;">Average</td><td>' + turnaroundTimeTotal + ' / ' + arrivalData.length + ' = ' + parseInt(resultado1).toFixed(1) + '</td><td>' + waitingTimeTotal + ' / ' + arrivalData.length + ' = ' + parseInt(resultado2).toFixed(1) + '</td></tr></tbody></table><br><br>';
   document.getElementById('tabla').innerHTML = table;
+  document.getElementById('h3').innerHTML = title;
+  document.getElementById('gantt').innerHTML = ganttChart;
+  document.getElementById('burst').innerHTML = burst;
 }
 
-function createGranttChart(arrivalData){
+/*function createGranttChart(arrivalData){
 
   let ganttChart = '';
   let burst = '';
@@ -215,4 +231,4 @@ function createGranttChart(arrivalData){
   document.getElementById('h3').innerHTML = title;
   document.getElementById('gantt').innerHTML = ganttChart;
   document.getElementById('burst').innerHTML = burst;
-}
+}*/
