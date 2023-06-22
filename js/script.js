@@ -168,7 +168,7 @@ function createTable(arrivalData) {
     if(finishTime<arrivalData[i][1]){
       finishTime++;
       ganttChart += '<div class="ocio"> - </div>';
-      burst += '<div class="br">' + arrivalData[i][2] + '</div>';
+      burst += '<div class="br">' + finishTime + '</div>';
     }
     arrivalTime = parseInt(arrivalData[i][1]);
 
@@ -187,26 +187,15 @@ function createTable(arrivalData) {
       ganttChart += '<div class="id">' + arrivalData[i][0] + '</div>';
       burst += '<div class="br">' + finishTime + '</div>';
   
-      table += '<tr><td>' + arrivalData[i][0] + '</td><td>' + arrivalTime + '</td><td>' + burstTime + '</td><td>' + finishTime + '</td><td>' + turnaroundTime + '</td><td>' + waitingTime + '</td></tr>';
+      table += '<tr><td>' + arrivalData[i][0] + '</td><td>' + arrivalTime + '</td><td>' + burstTime + '</td><td>' + finishTime + '</td><td>' + finishTime + '-' + arrivalTime + '=' + turnaroundTime + '</td><td>' + turnaroundTime + '-' + burstTime + '=' + waitingTime + '</td></tr>';
     }
-  
 
-  var resultado1 = (turnaroundTimeTotal / arrivalData.length).toString();
-  var resultado2 = (waitingTimeTotal / arrivalData.length).toString();
-
-  if (resultado1.includes(".0")) {
-    resultado1 = resultado1.replace(".0", "");
-  }
-
-  if (resultado2.includes(".0")) {
-    resultado2 = resultado2.replace(".0", "");
-  }
-
-  table += '<td colspan="4" style="text-align:right;">Average</td><td>' + turnaroundTimeTotal + ' / ' + arrivalData.length + ' = ' + parseInt(resultado1).toFixed(1) + '</td><td>' + waitingTimeTotal + ' / ' + arrivalData.length + ' = ' + parseInt(resultado2).toFixed(1) + '</td></tr></tbody></table><br><br>';
+  table += '<td colspan="4" style="text-align:right;">Average</td><td>' + turnaroundTimeTotal + ' / ' + arrivalData.length + ' = ' + (turnaroundTimeTotal / arrivalData.length).toFixed(1) + '</td><td>' + waitingTimeTotal + ' / ' + arrivalData.length + ' = ' + (waitingTimeTotal / arrivalData.length).toFixed(1) + '</td></tr></tbody></table><br><br>';
   document.getElementById('tabla').innerHTML = table;
   document.getElementById('h3').innerHTML = title;
   document.getElementById('gantt').innerHTML = ganttChart;
   document.getElementById('burst').innerHTML = burst;
+
 }
 
 /*function createGranttChart(arrivalData){
